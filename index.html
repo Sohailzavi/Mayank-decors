@@ -30,9 +30,16 @@ a{color:var(--teal)}
 .steps button.on{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:600}
 .steps button .tick{color:var(--teal);font-weight:700;margin-left:4px}
 .steps button.on .tick{color:#9FD3CC}
-.stage{display:grid;grid-template-columns:390px minmax(0,1fr);gap:32px;align-items:start;padding-top:24px}
-.phone{width:100%;max-width:390px;background:var(--bg);border:1px solid var(--line);border-radius:28px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.04),0 12px 32px rgba(27,26,23,.08)}
-.side{display:flex;flex-direction:column;gap:16px}
+.stage{display:grid;grid-template-columns:430px minmax(0,1fr);gap:36px;align-items:start;padding-top:24px}
+.device{position:sticky;top:76px;display:flex;flex-direction:column;align-items:center;gap:12px;padding:22px 20px 26px;background:#DCD5C8;border-radius:32px}
+.device-label{display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 14px;border-radius:15px;background:#1B1A17;color:#fff;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.device-label i{width:8px;height:8px;border-radius:50%;background:#5FD3A0}
+.phone{position:relative;width:100%;max-width:390px;background:var(--bg);border:10px solid #1B1A17;border-radius:44px;overflow:hidden;box-shadow:0 0 0 1px #000,0 24px 48px rgba(27,26,23,.28)}
+.phone::before{content:"";display:block;width:110px;height:24px;margin:8px auto 0;border-radius:12px;background:#1B1A17}
+.max-h{max-height:780px;overflow-y:auto;scrollbar-width:thin}
+.side{display:flex;flex-direction:column;gap:16px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px}
+.side .qcard{background:#FBFAF7}
+.side-tag{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--teal)}
 .side h2{font-size:24px;font-weight:800}
 .side .what{margin:0;font-size:15px;line-height:1.6;color:#3F3A32}
 .qcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}
@@ -109,12 +116,16 @@ a{color:var(--teal)}
 .hidden{display:none!important}
 @media (max-width:860px){
 .stage{grid-template-columns:minmax(0,1fr);gap:20px}
-.phone{margin:0 auto}
+.device{position:static;padding:18px 12px 22px;border-radius:24px}
+.side{padding:18px}
+.max-h{max-height:none;overflow:visible}
 .how{grid-template-columns:minmax(0,1fr)}
 .top h1{font-size:26px}
 }
 @media (max-width:420px){
-.phone{border-radius:20px}
+.phone{border-width:7px;border-radius:34px}
+.phone::before{width:88px;height:20px}
+.device{margin:0 -4px}
 .wrap{padding:18px 12px 100px}
 .steps{margin:0 -12px;padding-left:12px;padding-right:12px}
 }
@@ -420,7 +431,7 @@ renderSteps();
 if (current === STEPS.length - 1) buildSummary();
 const st = document.getElementById("steps").children[current];
 if (st && !still) st.scrollIntoView({ block: "nearest", inline: "center" });
-if (!still) window.scrollTo({ top: document.getElementById("steps").offsetTop - 2, behavior: "smooth" });
+if (!still) { const hd = document.querySelector(".top"); window.scrollTo({ top: hd.offsetTop + hd.offsetHeight, behavior: "smooth" }); }
 }
 document.getElementById("prev").onclick = () => show(current - 1);
 document.getElementById("next").onclick = () => show(current + 1);
@@ -592,6 +603,8 @@ if (e.target.id === "c-lining") { C.lining = !C.lining; calc(); }
 $("c-w").addEventListener("input", (e) => { C.w = e.target.value; calc(); });
 $("c-h").addEventListener("input", (e) => { C.h = e.target.value; calc(); });
 
+document.querySelectorAll(".phone").forEach((ph) => { const d = document.createElement("div"); d.className = "device"; d.innerHTML = '<span class="device-label"><i></i>App screen \u00b7 tap to try</span>'; ph.parentNode.insertBefore(d, ph); d.appendChild(ph); ph.firstElementChild.classList.add("max-h"); });
+document.querySelectorAll(".side").forEach((sd) => sd.insertAdjacentHTML("afterbegin", '<span class="side-tag">About this screen</span>'));
 renderQuestions();
 calc();
 show(0, true);

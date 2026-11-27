@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mayank Decor – Quotation App Preview</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap">
+<style>
+:root{--bg:#F6F4EF;--card:#FFFFFF;--ink:#1B1A17;--muted:#6B6760;--line:#E4E0D8;--soft:#EFECE6;--teal:#1E5B57;--teal-soft:#E3EEEC;--warm:#F3E7D6;--warm-ink:#6A3D12;--note:#F3EFE7}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:Manrope,sans-serif;margin:0}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:var(--teal)}
+.wrap{max-width:1040px;margin:0 auto;padding:24px 16px 120px}
+.top{display:flex;flex-direction:column;gap:10px;padding:8px 0 20px}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.top h1{font-size:30px;font-weight:800;line-height:1.15}
+.top p{margin:0;font-size:16px;line-height:1.55;color:#3F3A32;max-width:640px}
+.how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:6px}
+.how div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:14px;line-height:1.45}
+.how b{display:block;font-family:Manrope,sans-serif;font-size:15px;margin-bottom:2px}
+.steps{position:sticky;top:0;z-index:5;background:var(--bg);display:flex;gap:8px;overflow-x:auto;padding:12px 0;margin:0 -16px;padding-left:16px;padding-right:16px;scrollbar-width:none;border-bottom:1px solid var(--line)}
+.steps::-webkit-scrollbar{display:none}
+.steps button{flex:0 0 auto;height:40px;padding:0 14px;border-radius:20px;border:1px solid var(--line);background:var(--card);font-size:14px;font-weight:500;white-space:nowrap}
+.steps button.on{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:600}
+.steps button .tick{color:var(--teal);font-weight:700;margin-left:4px}
+.steps button.on .tick{color:#9FD3CC}
+.stage{display:grid;grid-template-columns:390px minmax(0,1fr);gap:32px;align-items:start;padding-top:24px}
+.phone{width:100%;max-width:390px;background:var(--bg);border:1px solid var(--line);border-radius:28px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.04),0 12px 32px rgba(27,26,23,.08)}
+.side{display:flex;flex-direction:column;gap:16px}
+.side h2{font-size:24px;font-weight:800}
+.side .what{margin:0;font-size:15px;line-height:1.6;color:#3F3A32}
+.qcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.qcard .qt{font-size:15px;font-weight:600;line-height:1.45}
+.qcard .qh{font-size:13px;color:var(--muted);line-height:1.45;margin-top:-4px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:40px;padding:8px 14px;border-radius:20px;border:1px solid var(--line);background:#fff;font-size:14px;font-weight:500}
+.chip.on{background:var(--teal);border-color:var(--teal);color:#fff;font-weight:600}
+.qcard textarea{width:100%;min-height:44px;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:#FBFAF7;font-size:15px;resize:vertical;line-height:1.4}
+.qcard textarea:focus,.field input:focus{outline:2px solid var(--teal);outline-offset:0;border-color:var(--teal)}
+.nav{display:flex;gap:10px;justify-content:space-between;margin-top:4px}
+.btn{height:50px;padding:0 20px;border-radius:14px;border:1px solid var(--line);background:#fff;font-size:15px;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;color:var(--ink)}
+.btn.primary{background:var(--teal);border-color:var(--teal);color:#fff}
+.btn.wa{background:#1A7F4B;border-color:#1A7F4B;color:#fff;width:100%;height:56px;font-size:16px}
+.confirmed{background:var(--teal-soft);border:1px solid #BFD8D4;border-radius:16px;padding:14px 16px;font-size:14px;line-height:1.6;color:#1F3F3C}
+.confirmed b{font-family:Manrope,sans-serif;display:block;margin-bottom:4px;font-size:15px}
+.confirmed ul{margin:0;padding-left:18px}
+.sc{display:flex;flex-direction:column;min-height:760px}
+.sc-head{padding:20px 20px 8px;display:flex;align-items:center;gap:12px}
+.sc-head .t{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0}
+.sc-head .s{font-size:12px;color:var(--muted)}
+.sc-head h3{font-size:22px;font-weight:800}
+.ib{width:44px;height:44px;border-radius:12px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--ink)}
+.sc-body{padding:12px 20px;display:flex;flex-direction:column;gap:12px;flex:1}
+.sc-foot{padding:12px 20px 22px;margin-top:auto}
+.cta{height:54px;border-radius:14px;background:var(--teal);color:#fff;border:0;width:100%;font-size:16px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px}
+.qrow{padding:16px;display:flex;flex-direction:column;gap:8px;width:100%;text-align:left}
+.between{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.muted{color:var(--muted)}
+.sm{font-size:13px}
+.pill{font-size:12px;font-weight:600;padding:4px 10px;border-radius:10px}
+.name{font-family:Manrope,sans-serif;font-size:17px;font-weight:700}
+.amt{font-size:16px;font-weight:600}
+.search{display:flex;align-items:center;gap:10px;height:46px;padding:0 14px;background:#fff;border:1px solid var(--line);border-radius:12px;color:var(--muted);font-size:15px}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.filters span{height:34px;padding:0 14px;border-radius:17px;border:1px solid var(--line);background:#fff;font-size:13px;display:inline-flex;align-items:center}
+.filters span.on{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:600}
+.field{display:flex;flex-direction:column;gap:6px}
+.field>span{font-size:14px;font-weight:600}
+.field input{height:48px;padding:0 14px;border-radius:12px;border:1px solid var(--line);background:#fff;font-size:16px;width:100%}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.seg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+.seg button{height:36px;padding:0 11px;border:0;background:#fff;font-size:13px;font-weight:600}
+.seg button.on{background:var(--ink);color:#fff}
+.opt{height:48px;padding:0 6px;border-radius:12px;border:1px solid var(--line);background:#fff;font-size:13px;font-weight:600}
+.opt.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.opt.soft.on{background:var(--teal-soft);border-color:var(--teal);color:var(--ink)}
+.big{height:56px;padding:0 14px;border-radius:12px;border:1px solid var(--line);background:#fff;font:600 22px Manrope,sans-serif;width:100%}
+.ctype{display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding:14px;border-radius:12px;border:1px solid var(--line);background:#fff;text-align:left}
+.ctype.on{border:2px solid var(--teal);background:var(--teal-soft)}
+.item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding-top:10px;border-top:1px solid var(--soft)}
+.res-head{padding:14px 16px;background:var(--teal);color:#fff;display:flex;justify-content:space-between;align-items:center;font-size:14px;font-weight:600}
+.res-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:12px 16px;border-top:1px solid var(--soft)}
+.res-row b{font-family:Manrope,sans-serif;font-size:16px;white-space:nowrap}
+.work{padding:12px 16px;background:var(--note);border-top:1px solid var(--line);font-size:13px;line-height:1.55;color:#3F3A32;white-space:pre-line}
+.work .h{display:block;font-size:12px;font-weight:600;color:#5A4A33;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+.warn{padding:12px 14px;border-radius:12px;background:var(--warm);color:var(--warm-ink);font-size:13px;line-height:1.5}
+.sw{width:40px;height:40px;border-radius:8px;flex-shrink:0}
+.fab{display:flex;align-items:center;gap:14px;padding:12px}
+.fab .sw{width:52px;height:52px;border-radius:10px}
+.line{display:flex;justify-content:space-between;gap:10px;padding:9px 14px;border-bottom:1px solid var(--soft)}
+.tot{padding:12px 14px;display:flex;flex-direction:column;gap:6px;background:#FBFAF7}
+.set-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 14px;border-bottom:1px solid var(--soft);font-size:14px}
+.set-row:last-child{border-bottom:0}
+.val{font-weight:700;padding:5px 10px;border-radius:8px;background:#F1EFEA;white-space:nowrap;font-size:13px}
+.val.ask{background:var(--warm);color:var(--warm-ink)}
+.glabel{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.final{max-width:640px;margin:0 auto;padding-top:28px;display:flex;flex-direction:column;gap:16px}
+.final h2{font-size:26px;font-weight:800}
+.summary{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;font-size:14px;line-height:1.6;white-space:pre-line;max-height:320px;overflow:auto;color:#3F3A32}
+.progress{font-size:14px;color:var(--muted)}
+.hidden{display:none!important}
+@media (max-width:860px){
+.stage{grid-template-columns:minmax(0,1fr);gap:20px}
+.phone{margin:0 auto}
+.how{grid-template-columns:minmax(0,1fr)}
+.top h1{font-size:26px}
+}
+@media (max-width:420px){
+.phone{border-radius:20px}
+.wrap{padding:18px 12px 100px}
+.steps{margin:0 -12px;padding-left:12px;padding-right:12px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+<span class="eyebrow">Mayank Decor · Preview for feedback</span>
+<h1>Your quotation app, first look</h1>
+<p>This is an early preview of the app. Nothing is final yet. Please look at each screen and tell us what to change, add or remove. Your answers help us build it exactly the way your shop works.</p>
+<div class="how">
+<div><b>1. Look</b>Go through the 7 screens using the tabs or the Next button.</div>
+<div><b>2. Try</b>On screen 4, type real window sizes and check if the metres match your method.</div>
+<div><b>3. Reply</b>Answer the short questions, then press “Send feedback on WhatsApp” at the end.</div>
+</div>
+</header>
+
+<nav class="steps" id="steps" aria-label="Screens"></nav>
+
+<main id="main">
+
+<section class="step" data-step="0">
+<div class="stage">
+<div class="phone"><div class="sc">
+<div class="sc-head">
+<div class="t"><span class="eyebrow">Mayank Decor</span><h3 style="font-size:28px">Quotations</h3></div>
+<button class="ib" aria-label="Rates and rules" data-go="6"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></button>
+</div>
+<div class="sc-body">
+<div class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Search customer, flat, quote no.</div>
+<div class="filters"><span class="on">All</span><span>Draft</span><span>Sent</span><span>Accepted</span></div>
+<button class="card qrow" data-go="5"><div class="between"><span class="sm muted">#284 · 10 Nov</span><span class="pill" style="background:var(--teal-soft);color:var(--teal)">Sent</span></div><span class="name">Mr. Madhu Chandra</span><div class="between"><span class="muted" style="font-size:14px">Sumadhura Acropolis · B 1411</span><span class="amt">₹1,37,314</span></div></button>
+<button class="card qrow" data-go="5"><div class="between"><span class="sm muted">#253 · 19 Nov</span><span class="pill" style="background:var(--warm);color:#7A4614">Draft</span></div><span class="name">Mr. Amit</span><div class="between"><span class="muted" style="font-size:14px">Aparna Zycon, Nallagandla</span><span class="amt">₹1,31,907</span></div></button>
+<button class="card qrow" data-go="5"><div class="between"><span class="sm muted">#275 · 31 Oct</span><span class="pill" style="background:var(--teal);color:#fff">Accepted</span></div><span class="name">Mr. Rushabh</span><div class="between"><span class="muted" style="font-size:14px">Aparna Zicon · E 2603</span><span class="amt">₹1,03,509</span></div></button>
+</div>
+<div class="sc-foot"><button class="cta" data-go="1"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>New quotation</button></div>
+</div></div>
+<div class="side">
+<h2>1 · All quotations</h2>
+<p class="what">The first screen when you open the app. Every quote is listed with its status, so you can see what is pending, sent or confirmed. Tap a quote to open it, or tap “New quotation” to start one. Statuses shown here are only examples.</p>
+<div class="qs" data-qs="0"></div>
+</div>
+</div>
+</section>
+
+<section class="step" data-step="1">
+<div class="stage">
+<div class="phone"><div class="sc">
+<div class="sc-head"><button class="ib" aria-label="Back" data-go="0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><div class="t"><span class="s">Step 1 of 3</span><h3>Customer</h3></div></div>
+<div class="sc-body" style="gap:16px">
+<div class="field"><span>Customer type</span>
+<div class="grid2">
+<div class="ctype on"><span style="font-size:15px;font-weight:600">Interior designer</span><span class="sm" style="color:#355E5A">Default discount 40%</span></div>
+<div class="ctype"><span style="font-size:15px;font-weight:600">Homeowner</span><span class="sm muted">Default discount 15%</span></div>
+</div></div>
+<label class="field"><span>Name on quote</span><input value="Mr. Madhu Chandra"></label>
+<label class="field"><span>Phone (for WhatsApp)</span><input placeholder="98xxxxxxxx" inputmode="tel"></label>
+<div class="grid2"><label class="field"><span>Project / society</span><input value="Sumadhura Acropolis"></label><label class="field"><span>Flat no.</span><input value="B 1411"></label></div>
+<label class="field"><span>Referred by designer <span style="font-weight:400" class="muted">(optional)</span></span><input placeholder="Search designer"></label>
+</div>
+<div class="sc-foot"><button class="cta" data-go="2">Next: add rooms</button></div>
+</div></div>
+<div class="side">
+<h2>2 · Customer details</h2>
+<p class="what">The first step of a new quote. Choosing designer or homeowner sets the usual discount automatically, so nobody has to remember it. The phone number is used to send the quote on WhatsApp.</p>
+<div class="qs" data-qs="1"></div>
+</div>
+</div>
+</section>
+
+<section class="step" data-step="2">
+<div class="stage">
+<div class="phone"><div class="sc">
+<div class="sc-head"><button class="ib" aria-label="Back" data-go="1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><div class="t"><span class="s">Step 2 of 3 · Mr. Madhu Chandra</span><h3>Rooms &amp; windows</h3></div></div>
+<div class="sc-body" id="rooms"></div>
+<div style="padding:14px 20px 22px;background:#fff;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto">
+<div style="display:flex;flex-direction:column;gap:2px"><span class="sm muted">4 rooms · 7 items</span><span style="font-family:Manrope,sans-serif;font-size:20px;font-weight:800">₹1,37,314</span></div>
+<button class="cta" style="width:auto;padding:0 22px;height:52px" data-go="5">Review quote</button>
+</div>
+</div></div>
+<div class="side">
+<h2>3 · Rooms and windows</h2>
+<p class="what">Add each room, then each window or wall in it: curtain, roman blind, roller/zebra blind, wallpaper or mural. Quantities are calculated automatically. Tap any item to open the calculator. Sizes here are only examples.</p>
+<div class="qs" data-qs="2"></div>
+</div>
+</div>
+</section>
+
+<section class="step" data-step="3">
+<div class="stage">
+<div class="phone"><div class="sc" style="min-height:0">
+<div class="sc-head"><button class="ib" aria-label="Back" data-go="2"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><div class="t"><span class="s">Living</span><h3>Add window or wall</h3></div></div>
+<div class="sc-body" style="gap:16px">
+<div class="field"><span>What are we quoting?</span><div class="grid3" id="c-types"></div></div>
+<div class="field" id="c-fw-wrap"><span>Fabric width</span><div class="grid2" id="c-fw"></div></div>
+<div class="field">
+<div class="between"><span id="c-mtitle" style="font-size:14px;font-weight:600">Window size</span><div class="seg" id="c-units"></div></div>
+<div class="grid2">
+<label class="field"><span style="font-size:13px;font-weight:400" class="muted" id="c-wl">Width (inches)</span><input class="big" id="c-w" type="number" inputmode="decimal"></label>
+<label class="field"><span style="font-size:13px;font-weight:400" class="muted" id="c-hl">Height (inches)</span><input class="big" id="c-h" type="number" inputmode="decimal"></label>
+</div>
+<span class="sm muted" id="c-conv"></span>
+</div>
+<div class="card" style="display:flex;align-items:center;gap:12px;padding:14px 16px"><div class="sw" id="c-sw"></div><div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:15px;font-weight:600" id="c-pn"></span><span class="sm muted" id="c-pm"></span></div></div>
+<div class="grid2" id="c-layers"><button class="opt soft" id="c-sheer"></button><button class="opt soft" id="c-lining"></button></div>
+<div class="warn hidden" id="c-warn"></div>
+<div class="card" style="overflow:hidden;border-radius:16px">
+<div class="res-head"><span>Calculated automatically</span><span style="font-size:12px;opacity:.85;font-weight:500">your rules</span></div>
+<div id="c-rows"></div>
+<div class="work"><span class="h">How it was worked out</span><span id="c-work"></span></div>
+</div>
+<div class="between" style="padding:4px 2px"><span class="muted" style="font-size:14px">Estimate for this item</span><span id="c-est" style="font-family:Manrope,sans-serif;font-size:22px;font-weight:800"></span></div>
+</div>
+<div class="sc-foot"><button class="cta" data-go="2">Save item</button></div>
+</div></div>
+<div class="side">
+<h2>4 · The calculator</h2>
+<p class="what">This is the main part. You enter only the width and height, and the app works out cloth, lining, stitching, track, tie belts and installation using your rules, the same way every time. <b>Please try it with real sizes</b> and tell us if any number is different from how you calculate.</p>
+<div class="confirmed"><b>Rules from you, already in the app</b>
+<ul>
+<li>All sizes are converted to inches</li>
+<li>Curtain: 1 panel per 20″ width, cloth per panel = (height + 15″) ÷ 39 m</li>
+<li>Wide 110″+ fabric: 1.5 m per panel, only under 110″ height</li>
+<li>Roman: 52″ usable width, (height + 15″) ÷ 39 × panels, lining same</li>
+<li>Roller / zebra: (height + 6″) × width ÷ 144</li>
+<li>Roman and roller: minimum 15 sq ft</li>
+<li>Wallpaper: 50 sq ft per roll, always a full roll</li>
+<li>Murals: fixed price per size, trimmed on site</li>
+</ul></div>
+<div class="qs" data-qs="3"></div>
+</div>
+</div>
+</section>
+
+<section class="step" data-step="4">
+<div class="stage">
+<div class="phone"><div class="sc">
+<div class="sc-head"><button class="ib" aria-label="Back" data-go="3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><div class="t"><h3>Pick fabric</h3></div></div>
+<div class="sc-body">
+<div class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Code, book or colour</div>
+<div class="filters"><span class="on">Main</span><span>Sheer</span><span>Wide 110″+</span><span>Blinds</span><span>Wallpaper</span></div>
+<div id="fabrics" style="display:flex;flex-direction:column;gap:10px"></div>
+</div>
+</div></div>
+<div class="side">
+<h2>5 · Fabric and product list</h2>
+<p class="what">Your fabrics, blinds and wallpapers with code, width and price. Staff pick from this list instead of typing prices, so the rate is always the current one. The codes and colours here are only samples. We will load your real list.</p>
+<div class="qs" data-qs="4"></div>
+</div>
+</div>
+</section>
+
+<section class="step" data-step="5">
+<div class="stage">
+<div class="phone"><div class="sc">
+<div class="sc-head"><button class="ib" aria-label="Back" data-go="2"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><div class="t"><span class="s">Step 3 of 3 · Quote #284</span><h3>Mr. Madhu Chandra</h3></div></div>
+<div class="sc-body">
+<div class="card between" style="padding:12px 14px"><span class="muted" style="font-size:14px">Discount on cloth &amp; blinds</span><span style="font-size:15px;font-weight:700">40% · Designer</span></div>
+<div class="card" style="overflow:hidden" id="qlines"></div>
+<span class="sm muted">Terms: Kindly confirm with 100% advance &amp; PO</span>
+</div>
+<div class="sc-foot" style="display:flex;flex-direction:column;gap:10px">
+<button class="cta" style="background:#1A7F4B">Share PDF on WhatsApp</button>
+<div class="grid2"><button class="btn">Download PDF</button><button class="btn" data-go="2">Edit items</button></div>
+</div>
+</div></div>
+<div class="side">
+<h2>6 · The final quote</h2>
+<p class="what">This is your quote #284, rebuilt line by line in the app. Same layout as your current quotes: cloth for each room, then lining, stitching, track, tie belts and installation. From here it can be shared as a PDF on WhatsApp in one tap.</p>
+<div class="qs" data-qs="5"></div>
+</div>
+</div>
+</section>
+
+<section class="step" data-step="6">
+<div class="stage">
+<div class="phone"><div class="sc">
+<div class="sc-head"><button class="ib" aria-label="Back" data-go="0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><div class="t"><span class="s">Owner only</span><h3>Rates &amp; rules</h3></div></div>
+<div class="sc-body" id="settings" style="gap:16px"></div>
+</div></div>
+<div class="side">
+<h2>7 · Rates and rules</h2>
+<p class="what">Only you (the owner) can open this. When a rate or rule changes, you change it here once and every new quote uses it. Old quotes keep the rates they were made with. Items marked in orange are still to be confirmed by you.</p>
+<div class="qs" data-qs="6"></div>
+</div>
+</div>
+</section>
+
+<section class="step" data-step="7">
+<div class="final">
+<h2>Send your feedback</h2>
+<p class="what" style="margin:0;font-size:15px;line-height:1.6;color:#3F3A32">Thank you for going through the preview. Add anything else you would like below, then press the green button. It opens WhatsApp with all your answers ready to send.</p>
+<p class="progress" id="progress"></p>
+<div class="qcard"><span class="qt">Anything else you want in the app?</span><span class="qh">Features, changes, or anything that confused you.</span><textarea id="general" rows="4" placeholder="Type here"></textarea></div>
+<div class="qcard"><span class="qt">Your name</span><textarea id="who" rows="1" placeholder="e.g. Mayank"></textarea></div>
+<button class="btn wa" id="send"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.3z"/></svg>Send feedback on WhatsApp</button>
+<span class="glabel">Preview of your message</span>
+<div class="summary" id="summary"></div>
+</div>
+</section>
+
+<div class="nav" id="nav" style="max-width:1040px;margin:28px auto 0">
+<button class="btn" id="prev">Back</button>
+<button class="btn primary" id="next">Next screen</button>
+</div>
+</main>
+</div>
+
+<script>
+const FEEDBACK_WHATSAPP = "91XXXXXXXXXX";
+
+const STEPS = ["Quotations","Customer","Rooms","Calculator","Fabrics","Final quote","Rates & rules","Send feedback"];
+
+const QUESTIONS = [
+[
+{id:"q1a",q:"Should each salesperson see only their own quotes, or everyone’s?",opts:["Only their own","Everyone’s"]},
+{id:"q1b",q:"Are these statuses enough: Draft, Sent, Accepted?",hint:"For example, do you also need Revised or Lost?",opts:["Yes, enough","Need more"]},
+{id:"q1c",q:"Should quote numbers continue from your current numbering (285, 286…)?",opts:["Yes","No, start fresh"]}
+],
+[
+{id:"q2a",q:"Should customer type set the discount automatically (designer 40%, homeowner 15%)?",opts:["Yes","No, we decide each time"]},
+{id:"q2b",q:"When a designer brings a homeowner, whose name goes on the quote?",opts:["Homeowner","Designer","Both"]},
+{id:"q2c",q:"Do you need the designer’s GSTIN on the quote?",opts:["Yes","No"]}
+],
+[
+{id:"q3a",q:"Room names: pick from a fixed list (Living, MBR, CBR, GBR, Kitchen, Pooja) or type any name?",opts:["Fixed list","Type any name","Both"]},
+{id:"q3b",q:"If many rooms use the same fabric, show one line like today (“Cloth for CBR, GBR, MBR”)?",opts:["Yes, one line","Separate line per room"]},
+{id:"q3c",q:"For wallpaper, do you remove door and window areas from the wall size?",opts:["Yes","No, full wall"]}
+],
+[
+{id:"q4a",q:"Did the calculator match your own numbers?",hint:"Try 2–3 real windows and tell us any difference.",opts:["Yes, all matched","Some were different"]},
+{id:"q4b",q:"Wide 110″+ fabric: the rule gives 7.5 m for a 100″ × 100″ window, but you mentioned 9 m. Do you add an extra panel?",opts:["Yes, one extra panel","No, 7.5 m is right"]},
+{id:"q4c",q:"Roller / zebra blind: do you add 6″ to the height only, or to both height and width?",opts:["Height only","Height and width"]},
+{id:"q4d",q:"How do you calculate M Track (RFT)?",hint:"Right now the app uses window width, counted twice when there is a sheer."},
+{id:"q4e",q:"Sheer curtains: same 20″ per panel as main curtains?",opts:["Yes","No, different"]}
+],
+[
+{id:"q5a",q:"Can you share your fabric, blind and wallpaper list in Excel (code, width, price)?",opts:["Yes, will share","Need help making it"]},
+{id:"q5b",q:"Is every wallpaper roll 50 sq ft, or does it change by brand?",opts:["Always 50","Changes by brand"]},
+{id:"q5c",q:"Should the fabric code be printed on the customer’s quote?",opts:["Yes","No, only inside the app"]}
+],
+[
+{id:"q6a",q:"Should the app make the PDF and share it on WhatsApp, or will you still enter quotes in your billing software?",opts:["App makes the PDF","Keep billing software too"]},
+{id:"q6b",q:"Discount only on cloth and blinds, never on lining, stitching, track or installation. Correct?",opts:["Correct","Not always"]},
+{id:"q6c",q:"GST stays “Nil rated” on quotes?",opts:["Yes","No"]},
+{id:"q6d",q:"Is the terms line always the same (“100% advance & PO”)?",opts:["Yes","Changes sometimes"]}
+],
+[
+{id:"q7a",q:"Only the owner can change rates and rules?",opts:["Yes, only owner","Some staff too"]},
+{id:"q7b",q:"What is the maximum discount staff can give without asking you?"},
+{id:"q7c",q:"Which rates are current: lining ₹300 or ₹310? Roman stitching ₹190 or ₹170?"},
+{id:"q7d",q:"Please share your mural sizes and their prices."}
+]
+];
+
+const ANS = (() => { try { return JSON.parse(localStorage.getItem("md-feedback") || "{}"); } catch (e) { return {}; } })();
+const save = () => { try { localStorage.setItem("md-feedback", JSON.stringify(ANS)); } catch (e) {} };
+const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function renderQuestions() {
+document.querySelectorAll("[data-qs]").forEach((box) => {
+const list = QUESTIONS[+box.dataset.qs];
+box.innerHTML = '<span class="glabel" style="display:block;margin-bottom:10px">Questions for you</span><div style="display:flex;flex-direction:column;gap:12px">' + list.map((q) => {
+const a = ANS[q.id] || {};
+const chips = q.opts ? '<div class="chips">' + q.opts.map((o) => '<button class="chip' + (a.choice === o ? " on" : "") + '" data-q="' + q.id + '" data-o="' + esc(o) + '" aria-pressed="' + (a.choice === o) + '">' + esc(o) + "</button>").join("") + "</div>" : "";
+return '<div class="qcard"><span class="qt">' + esc(q.q) + "</span>" + (q.hint ? '<span class="qh">' + esc(q.hint) + "</span>" : "") + chips + '<textarea rows="1" data-n="' + q.id + '" placeholder="' + (q.opts ? "Add a note (optional)" : "Type your answer") + '">' + esc(a.note || "") + "</textarea></div>";
+}).join("") + "</div>";
+});
+}
+
+document.addEventListener("click", (e) => {
+const chip = e.target.closest(".chip");
+if (chip) {
+const id = chip.dataset.q;
+ANS[id] = ANS[id] || {};
+ANS[id].choice = ANS[id].choice === chip.dataset.o ? "" : chip.dataset.o;
+chip.parentElement.querySelectorAll(".chip").forEach((c) => { const on = c.dataset.o === ANS[id].choice; c.classList.toggle("on", on); c.setAttribute("aria-pressed", on); });
+save(); renderSteps();
+return;
+}
+const go = e.target.closest("[data-go]");
+if (go) show(+go.dataset.go);
+});
+document.addEventListener("input", (e) => {
+const id = e.target.dataset && e.target.dataset.n;
+if (id) { ANS[id] = ANS[id] || {}; ANS[id].note = e.target.value; save(); renderSteps(); }
+if (e.target.id === "general" || e.target.id === "who") { ANS["_" + e.target.id] = e.target.value; save(); buildSummary(); }
+});
+
+let current = 0;
+const answered = (i) => i < QUESTIONS.length && QUESTIONS[i].every((q) => ANS[q.id] && (ANS[q.id].choice || (ANS[q.id].note || "").trim()));
+function renderSteps() {
+document.getElementById("steps").innerHTML = STEPS.map((s, i) => '<button class="' + (i === current ? "on" : "") + '" data-go="' + i + '">' + (i < 7 ? i + 1 + " · " : "") + esc(s) + (answered(i) ? '<span class="tick" aria-label="answered">✓</span>' : "") + "</button>").join("");
+}
+function show(i, still) {
+current = Math.max(0, Math.min(STEPS.length - 1, i));
+document.querySelectorAll(".step").forEach((s) => s.classList.toggle("hidden", +s.dataset.step !== current));
+document.getElementById("prev").style.visibility = current === 0 ? "hidden" : "visible";
+document.getElementById("next").classList.toggle("hidden", current === STEPS.length - 1);
+document.getElementById("next").textContent = current === STEPS.length - 2 ? "Finish and send feedback" : "Next screen";
+renderSteps();
+if (current === STEPS.length - 1) buildSummary();
+const st = document.getElementById("steps").children[current];
+if (st && !still) st.scrollIntoView({ block: "nearest", inline: "center" });
+if (!still) window.scrollTo({ top: document.getElementById("steps").offsetTop - 2, behavior: "smooth" });
+}
+document.getElementById("prev").onclick = () => show(current - 1);
+document.getElementById("next").onclick = () => show(current + 1);
+
+function buildSummary() {
+let out = "Mayank Decor app – feedback" + (ANS._who ? " from " + ANS._who : "") + "\n";
+let n = 0, total = 0;
+QUESTIONS.forEach((list, i) => {
+const lines = [];
+list.forEach((q) => {
+total++;
+const a = ANS[q.id];
+if (!a || !(a.choice || (a.note || "").trim())) return;
+n++;
+lines.push("• " + q.q + "\n  → " + [a.choice, (a.note || "").trim()].filter(Boolean).join(" – "));
+});
+if (lines.length) out += "\n" + (i + 1) + ". " + STEPS[i] + "\n" + lines.join("\n") + "\n";
+});
+if ((ANS._general || "").trim()) out += "\nOther suggestions\n" + ANS._general.trim() + "\n";
+document.getElementById("summary").textContent = n || (ANS._general || "").trim() ? out : "No answers yet. Go back to any screen and answer the questions.";
+document.getElementById("progress").textContent = n + " of " + total + " questions answered";
+document.getElementById("general").value = ANS._general || "";
+document.getElementById("who").value = ANS._who || "";
+return out;
+}
+document.getElementById("send").onclick = () => {
+const text = buildSummary();
+window.open("https://wa.me/" + FEEDBACK_WHATSAPP.replace(/\D/g, "") + "?text=" + encodeURIComponent(text), "_blank");
+};
+
+const ROOMS = [
+["Living", [["Curtain · Main + Sheer", "132″ × 108″ · MD-1290 / MD-W118", "14 panels"], ["Roman blind", "40″ × 60″ · MD-3630", "1.9 m"], ["Wallpaper · TV wall", "10 ft × 6 ft · WP-201", "2 rolls"]]],
+["Master bedroom", [["Curtain · Main", "120″ × 108″ · MD-1290", "6 panels"]]],
+["Children’s bedroom", [["Curtain · Main", "120″ × 108″ · MD-1290", "6 panels"], ["Roman blind", "38″ × 56″ · MD-1290", "1.8 m"]]],
+["Kitchen", [["Roller / Zebra blind", "48″ × 57″ · Zebra grey", "21 SQF"]]]
+];
+document.getElementById("rooms").innerHTML = ROOMS.map((r) => '<div class="card" style="padding:14px 16px;display:flex;flex-direction:column;gap:10px"><div class="between"><span style="font-family:Manrope,sans-serif;font-size:16px;font-weight:700">' + r[0] + '</span><button data-go="3" style="border:0;background:none;color:var(--teal);font-weight:600;font-size:14px;padding:8px 0">+ Add item</button></div>' + r[1].map((it) => '<button class="item" data-go="3" style="border-left:0;border-right:0;border-bottom:0;background:none;text-align:left;width:100%;padding-left:0;padding-right:0"><span style="display:flex;flex-direction:column;gap:3px"><span style="font-size:14px;font-weight:600">' + it[0] + '</span><span class="sm muted">' + it[1] + '</span></span><span class="sm" style="font-weight:600;color:var(--teal);white-space:nowrap">' + it[2] + "</span></button>").join("") + "</div>").join("") + '<button class="opt" style="border-style:dashed;background:transparent">+ Add room</button>';
+
+const FABRICS = [["MD-1290", "Textured plain, ash", "54″", "₹1,290", "#9C9A94"], ["MD-1380", "Linen weave, sand", "54″", "₹1,380", "#C9B79C"], ["MD-1490", "Velvet, forest", "54″", "₹1,490", "#3F5A49"], ["MD-930", "Cotton blend, ivory", "54″", "₹930", "#E8E1D2"], ["MD-2310", "Jacquard, rust", "54″", "₹2,310", "#9A5B3A"], ["MD-3630", "Silk blend, champagne", "54″", "₹3,630", "#D8C7A4"], ["MD-W118", "Sheer voile, white · wide", "118″", "₹1,650", "#E9E6DF"]];
+document.getElementById("fabrics").innerHTML = FABRICS.map((f, i) => '<button class="card fab" data-go="3" style="text-align:left;' + (i === 0 ? "border-color:var(--teal)" : "") + '"><span class="sw" style="background:' + f[4] + '"></span><span style="flex:1;display:flex;flex-direction:column;gap:3px;min-width:0"><span style="font-size:15px;font-weight:600">' + f[0] + '</span><span class="sm muted">' + f[1] + " · " + f[2] + '</span></span><span style="display:flex;flex-direction:column;align-items:flex-end;gap:2px"><span style="font-family:Manrope,sans-serif;font-size:16px;font-weight:700">' + f[3] + '</span><span class="muted" style="font-size:12px">per metre</span></span></button>').join("");
+
+const QL = [["Cloth", "CBR Main Curtain", "17.80 m × ₹1,290 − 40%", "₹13,777.20"], ["Cloth", "CBR Blind", "2.30 m × ₹1,290 − 40%", "₹1,780.20"], ["Cloth", "GBR Main", "13.50 m × ₹1,290 − 40%", "₹10,449.00"], ["Cloth", "MBR Main", "17.70 m × ₹1,290 − 40%", "₹13,699.80"], ["Cloth", "Living Main", "18.00 m × ₹1,380 − 40%", "₹14,904.00"], ["Cloth", "Living Sheer", "18.00 m × ₹1,310 − 40%", "₹14,148.00"], ["Cloth", "Living Blind", "2.40 m × ₹3,630 − 40%", "₹5,227.20"], ["Lining", "CBR, MBR, GBR, Living", "71.70 m × ₹300", "₹21,510.00"], ["Roman Stitching", "GBR, CBR", "43.10 SQF × ₹190", "₹8,189.00"], ["M Track", "CBR, GBR, MBR, Living", "51.00 RFT × ₹250", "₹12,750.00"], ["Curtains Stitching", "CBR, GBR, MBR, Living", "32 pcs × ₹250", "₹8,000.00"], ["Curtain Tie Belt", "CBR, GBR, MBR, Living", "10 pcs × ₹500", "₹5,000.00"], ["Blind", "Kitchen Aluminium", "19.00 SQF × ₹320", "₹6,080.00"], ["Installation", "All", "9 pcs × ₹200", "₹1,800.00"]];
+document.getElementById("qlines").innerHTML = QL.map((l) => '<div class="line"><span style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font-size:14px;font-weight:600">' + l[0] + ' <span class="muted" style="font-weight:400">for ' + l[1] + '</span></span><span class="muted" style="font-size:12px">' + l[2] + '</span></span><span style="font-size:14px;font-weight:600;white-space:nowrap">' + l[3] + "</span></div>").join("") + '<div class="tot"><div class="between muted" style="font-size:14px"><span>Subtotal</span><span>₹1,37,314.40</span></div><div class="between muted" style="font-size:14px"><span>Rounded off</span><span>− 0.40</span></div><div class="between muted" style="font-size:14px"><span>Tax</span><span>Nil rated</span></div><div class="between" style="padding-top:6px;border-top:1px solid var(--line)"><span style="font-size:15px;font-weight:600">Grand total</span><span style="font-family:Manrope,sans-serif;font-size:22px;font-weight:800">₹1,37,314</span></div></div>';
+
+const SET = [
+["Measurements", [["All sizes converted to", "inches"], ["Cloth metres rounded to", "nearest 0.1 m"], ["Inches per metre", "39"]]],
+["Curtains", [["Width one panel covers", "20″"], ["Height allowance per panel", "+ 15″"], ["Wide fabric (110″+) per panel", "1.5 m"], ["Wide fabric: extra panel?", "To confirm", 1], ["Track RFT rule", "To confirm", 1], ["Tie belts per window", "2"]]],
+["Blinds", [["Roman: usable width of 54″", "52″"], ["Roman: height allowance", "+ 15″"], ["Roller/zebra: added to height", "+ 6″"], ["Roller/zebra: added to width", "To confirm", 1], ["Minimum billable area", "15 sq ft"]]],
+["Wallpaper & murals", [["Coverage per roll", "50 sq ft"], ["Part roll", "round up"], ["Wallpaper installation", "₹800 / roll"], ["Mural sizes & prices", "To confirm", 1]]],
+["Fixed charges", [["Lining", "₹300 / m", 1], ["Curtain stitching", "₹250 / panel"], ["Roman stitching", "₹190 / SQF", 1], ["M Track", "₹250 / RFT"], ["Curtain tie belt", "₹500 / pc"], ["Installation", "₹200 / window"]]],
+["Discounts", [["Interior designer", "40%"], ["Homeowner", "15%"], ["Max staff can give", "To confirm", 1], ["Applies to", "Cloth, blinds"]]]
+];
+document.getElementById("settings").innerHTML = SET.map((g) => '<div style="display:flex;flex-direction:column;gap:8px"><span class="glabel">' + g[0] + '</span><div class="card" style="overflow:hidden">' + g[1].map((r) => '<div class="set-row"><span>' + r[0] + '</span><span class="val' + (r[2] ? " ask" : "") + '">' + r[1] + "</span></div>").join("") + "</div></div>").join("") + '<span class="sm muted" style="line-height:1.5;padding-bottom:12px">Changes apply to new quotes only.</span>';
+
+const C = { type: "curtain", fabric: "std", unit: "in", w: "100", h: "100", sheer: false, lining: true };
+const R = { panelIn: 20, allowIn: 15, inPerM: 39, wideM: 1.5, wideMaxH: 110, romanUsable: 52, rollerAddIn: 6, minSqf: 15, rollSqf: 50, rate: 1290, wideRate: 1650, disc: 0.4, lining: 300, stitch: 250, track: 250, tie: 500, install: 200, roman: 190, roller: 320, roll: 5000, rollFit: 800 };
+const TO_IN = { in: 1, ft: 12, cm: 1 / 2.54, mm: 1 / 25.4 };
+const TYPES = [["curtain", "Curtain", "100", "100"], ["roman", "Roman blind", "60", "60"], ["roller", "Roller / Zebra", "60", "60"], ["wallpaper", "Wallpaper", "120", "72"], ["mural", "Mural", "96", "96"]];
+const r1 = (x) => Math.round(x * 10 + 1e-9) / 10;
+const up = (x, s) => Math.ceil(x / s - 1e-9) * s;
+const f1 = (x) => (Math.round(x * 10) / 10).toFixed(1);
+const f2 = (x) => (Math.round(x * 100) / 100).toFixed(2);
+const inr = (x) => "₹" + Math.round(x).toLocaleString("en-IN");
+const $ = (id) => document.getElementById(id);
+
+function calc() {
+const wIn = (parseFloat(C.w) || 0) * TO_IN[C.unit];
+const hIn = (parseFloat(C.h) || 0) * TO_IN[C.unit];
+const sqf = (a, b) => (a * b) / 144;
+let rows = [], work = "", total = 0, warn = "";
+if (C.type === "curtain") {
+const layers = C.sheer ? 2 : 1;
+const panels = Math.ceil(wIn / R.panelIn - 1e-9);
+const trk = up((wIn / 12) * layers, 0.5);
+let cloth;
+if (C.fabric === "std") {
+const per = (hIn + R.allowIn) / R.inPerM;
+cloth = r1(panels * per);
+rows.push(["Cloth – main", panels + " panels × " + f2(per) + " m", f1(cloth) + " m"]);
+work = "Panels: " + f1(wIn) + "″ ÷ 20″ per panel = " + f2(wIn / R.panelIn) + " → " + panels + "\nPer panel: (" + f1(hIn) + "″ + 15″) ÷ 39 = " + f2(per) + " m\nCloth: " + panels + " × " + f2(per) + " = " + f2(panels * per) + " → " + f1(cloth) + " m";
+} else {
+cloth = panels * R.wideM;
+rows.push(["Cloth – main (wide)", panels + " panels × 1.5 m", f1(cloth) + " m"]);
+work = "Wide fabric runs sideways, its width covers the height\nPanels: " + f1(wIn) + "″ ÷ 20″ = " + f2(wIn / R.panelIn) + " → " + panels + "\nCloth: " + panels + " × 1.5 m = " + f1(cloth) + " m";
+warn = hIn >= R.wideMaxH ? "Height is " + f1(hIn) + "″. Wide fabric only works under 110″ high." : "You mentioned 9 m for 100″ × 100″ in wide fabric. This rule gives 7.5 m. Please confirm in the question on the right.";
+}
+const rate = C.fabric === "std" ? R.rate : R.wideRate;
+if (C.sheer) rows.push(["Cloth – sheer", "same panels as main", f1(cloth) + " m"]);
+if (C.lining) rows.push(["Lining", "same as main cloth", f1(cloth) + " m"]);
+rows.push(["Curtain stitching", panels + " × " + layers + (layers > 1 ? " layers" : " layer"), panels * layers + " pcs"]);
+rows.push(["M Track", "width × layers (to confirm)", f1(trk) + " RFT"]);
+rows.push(["Tie belts", "2 per curtained window", "2 pcs"]);
+rows.push(["Installation", "per window", "1 pc"]);
+total = cloth * rate * (1 - R.disc) * layers + (C.lining ? cloth * R.lining : 0) + panels * layers * R.stitch + trk * R.track + 2 * R.tie + R.install;
+} else if (C.type === "roman") {
+const panels = Math.max(1, Math.ceil(wIn / R.romanUsable - 1e-9));
+const per = (hIn + R.allowIn) / R.inPerM;
+const cloth = r1(panels * per);
+const area = sqf(wIn, hIn);
+const bill = Math.max(area, R.minSqf);
+rows.push(["Cloth – main", panels + (panels > 1 ? " panels" : " panel") + " × " + f2(per) + " m", f1(cloth) + " m"]);
+rows.push(["Lining", "same as main", f1(cloth) + " m"]);
+rows.push(["Roman stitching", area < R.minSqf ? f2(area) + " sq ft → minimum 15" : f1(wIn) + "″ × " + f1(hIn) + "″ ÷ 144", f2(bill) + " SQF"]);
+rows.push(["Installation", "per blind", "1 pc"]);
+work = "Panels: " + f1(wIn) + "″ ÷ 52″ usable = " + f2(wIn / R.romanUsable) + " → " + panels + "\nPer panel: (" + f1(hIn) + "″ + 15″) ÷ 39 = " + f2(per) + " m\nCloth: " + panels + " × " + f2(per) + " → " + f1(cloth) + " m, lining the same\nStitching: " + f2(area) + " sq ft" + (area < R.minSqf ? ", billed at 15 minimum" : "");
+total = cloth * R.rate * (1 - R.disc) + cloth * R.lining + bill * R.roman + R.install;
+} else if (C.type === "roller") {
+const area = sqf(wIn, hIn + R.rollerAddIn);
+const bill = Math.max(area, R.minSqf);
+rows.push(["Roller / zebra blind", area < R.minSqf ? f2(area) + " sq ft → minimum 15" : "(" + f1(hIn) + "″ + 6″) × " + f1(wIn) + "″ ÷ 144", f2(bill) + " SQF"]);
+rows.push(["Installation", "per blind", "1 pc"]);
+work = "Area: (" + f1(hIn) + "″ + 6″) × " + f1(wIn) + "″ ÷ 144 = " + f2(area) + " sq ft" + (area < R.minSqf ? "\nBelow 15 sq ft, so billed at 15" : "");
+warn = "If 6″ is added to the width too, this blind is " + f2(Math.max(sqf(wIn + 6, hIn + 6), R.minSqf)) + " sq ft. Please confirm in the question on the right.";
+total = bill * R.roller + R.install;
+} else if (C.type === "wallpaper") {
+const area = sqf(wIn, hIn);
+const rolls = Math.max(1, Math.ceil(area / R.rollSqf - 1e-9));
+rows.push(["Wallpaper rolls", f2(area) + " sq ft ÷ 50 per roll", rolls + (rolls > 1 ? " rolls" : " roll")]);
+rows.push(["Wallpaper installation", "₹800 per roll", rolls + (rolls > 1 ? " rolls" : " roll")]);
+work = "Wall: " + f2(wIn / 12) + " ft × " + f2(hIn / 12) + " ft = " + f2(area) + " sq ft\nRolls: " + f2(area) + " ÷ 50 = " + f2(area / R.rollSqf) + " → " + rolls + " (always a full roll)";
+total = rolls * (R.roll + R.rollFit);
+} else {
+rows.push(["Mural", "fixed size 10 × 10 ft", "1 pc"]);
+rows.push(["Trim on site to", "wall size", f1(wIn / 12) + " × " + f1(hIn / 12) + " ft"]);
+work = "Murals are sold by fixed size, not per sq ft\nWall " + f1(wIn / 12) + " × " + f1(hIn / 12) + " ft → smallest size that covers it: 10 × 10 ft\nExtra is trimmed during installation";
+if (wIn > 120 || hIn > 120) warn = "Wall is bigger than 10 × 10 ft. We need your list of mural sizes to pick the right one.";
+}
+const P = { curtain: C.fabric === "std" ? ["MD-1290 · Textured plain, ash", "54″ wide · ₹1,290 / m · 40% off", "#9C9A94"] : ["MD-W118 · Sheer voile, white", "118″ wide · ₹1,650 / m · 40% off", "#E9E6DF"], roman: ["MD-1290 · Textured plain, ash", "54″ wide · ₹1,290 / m · 40% off", "#9C9A94"], roller: ["Zebra blind · Grey", "₹320 / SQF", "#B8B4AC"], wallpaper: ["WP-201 · Textured linen", "50 sq ft roll · ₹5,000 / roll", "#D9CBB4"], mural: ["Mural · 10 × 10 ft", "Fixed price per size", "#7E9C93"] }[C.type];
+const btn = (on, label, key) => '<button class="opt' + (on ? " on" : "") + '" data-k="' + key + '" aria-pressed="' + on + '">' + label + "</button>";
+$("c-types").innerHTML = TYPES.map((t) => btn(C.type === t[0], t[1], "type:" + t[0])).join("");
+$("c-fw").innerHTML = btn(C.fabric === "std", "Standard 54″", "fabric:std") + btn(C.fabric === "wide", "Wide 110″+", "fabric:wide");
+$("c-units").innerHTML = ["in", "ft", "cm", "mm"].map((u) => '<button class="' + (C.unit === u ? "on" : "") + '" data-k="unit:' + u + '" aria-pressed="' + (C.unit === u) + '">' + u + "</button>").join("");
+const isC = C.type === "curtain";
+$("c-fw-wrap").classList.toggle("hidden", !isC);
+$("c-layers").classList.toggle("hidden", !isC);
+const wall = C.type === "wallpaper" || C.type === "mural";
+$("c-mtitle").textContent = wall ? "Wall size" : "Window size";
+const ul = { in: "inches", ft: "feet", cm: "cm", mm: "mm" }[C.unit];
+$("c-wl").textContent = "Width (" + ul + ")";
+$("c-hl").textContent = "Height (" + ul + ")";
+if (document.activeElement !== $("c-w")) $("c-w").value = C.w;
+if (document.activeElement !== $("c-h")) $("c-h").value = C.h;
+$("c-conv").textContent = "In inches: " + f1(wIn) + "″ wide × " + f1(hIn) + "″ high";
+$("c-sw").style.background = P[2];
+$("c-pn").textContent = P[0];
+$("c-pm").textContent = P[1];
+$("c-sheer").textContent = C.sheer ? "✓ Sheer layer" : "+ Sheer layer";
+$("c-sheer").classList.toggle("on", C.sheer);
+$("c-lining").textContent = C.lining ? "✓ Lining" : "+ Lining";
+$("c-lining").classList.toggle("on", C.lining);
+$("c-warn").textContent = warn;
+$("c-warn").classList.toggle("hidden", !warn);
+$("c-rows").innerHTML = rows.map((r) => '<div class="res-row"><span style="display:flex;flex-direction:column;gap:2px"><span style="font-size:14px;font-weight:600">' + r[0] + '</span><span class="muted" style="font-size:12px">' + r[1] + "</span></span><b>" + r[2] + "</b></div>").join("");
+$("c-work").textContent = work;
+$("c-est").textContent = C.type === "mural" ? "From mural price list" : inr(total);
+}
+document.querySelector('[data-step="3"]').addEventListener("click", (e) => {
+const b = e.target.closest("[data-k]");
+if (b) {
+const [k, v] = b.dataset.k.split(":");
+if (k === "type") { const t = TYPES.find((x) => x[0] === v); Object.assign(C, { type: v, unit: "in", w: t[2], h: t[3] }); }
+if (k === "fabric") C.fabric = v;
+if (k === "unit" && C.unit !== v) { const f = TO_IN[C.unit] / TO_IN[v]; const fm = (x) => String(Math.round((parseFloat(x) || 0) * f * 10) / 10); Object.assign(C, { unit: v, w: fm(C.w), h: fm(C.h) }); }
+calc();
+}
+if (e.target.id === "c-sheer") { C.sheer = !C.sheer; calc(); }
+if (e.target.id === "c-lining") { C.lining = !C.lining; calc(); }
+});
+$("c-w").addEventListener("input", (e) => { C.w = e.target.value; calc(); });
+$("c-h").addEventListener("input", (e) => { C.h = e.target.value; calc(); });
+
+renderQuestions();
+calc();
+show(0, true);
+</script>
+</body>
+</html>
